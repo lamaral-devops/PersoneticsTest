@@ -1,26 +1,27 @@
-Estas foram as alterações e correções feitas no código:
+# These were the changes and fixes made to the code:
 
-1. O arquivo "inventory" estava com o parâmetro "ansible_host" errado, então foi necessário colocar o endereço de IP correto
-para que fosse possível fazer o deploy, tanto do Jenkins quanto do minikube, da forma correta usando os playbooks fornecidos.
+1. The "inventory" file had the wrong "ansible_host" parameter, so it was necessary to put the correct IP address
+so that it was possible to deploy, both Jenkins and minikube, correctly using the provided playbooks.
 
-# [jenkins]
+# jenkins
 jenkins_master <ansible_host=54.229.22.238> ansible_user=ec2-user host_key_checking=False ansible_ssh_private_key_file=jkey.pem
 
-# [minikube]
+# minikube
 minideploy <ansible_host=176.34.79.63> ansible_user=ec2-user host_key_checking=False ansible_ssh_private_key_file=skey.pem
 
-2. O Dockerfile_Jenkins_Master sofreu as seguintes alterações:
-   - Os comandos RUN foram agrupados em uma única instrução para reduzir o número de camadas na imagem Docker e melhorar a eficiência do build.
-   - No comando RUN onde o grupo docker está sendo criado e o usuário Jenkins está sendo adicionado, eu adicionei uma verificação para saber se o grupo
-   docker já existe.
-   - Também adicionei uma verificação para saber se a versão do plugin que está sendo instalado é compatível com a versão do Jenkins.
-   - Uma verificação de permissões do arquivo "jenkins_master_casc.yaml" foi adicionada antes de sua cópia para "/var/jenkins_home/casc.yaml".
+2. The Dockerfile_Jenkins_Master underwent the following changes:
+   - The RUN commands were grouped into a single instruction to reduce the number of layers in the Docker image and improve the efficiency of the build.
+   - In the RUN command where the docker group is being created and the Jenkins user is being added, I added a check to see if the docker group already exists.
+   - I also added a check to see if the version of the plugin being installed is compatible with the Jenkins version.
+   - A permissions check of the "jenkins_master_casc.yaml" file was added before its copy to "/var/jenkins_home/casc.yaml".
 
-3. O caminho "/usr/local/bin/docker:/usr/local/bin/docker" foi adicionado aos volumes do docker-compose.
+3. The path "/usr/local/bin/docker:/usr/local/bin/docker" was added to the docker-compose volumes.
 
-4. Também foi necessário alterar as permissões das chaves pem com o comando "chmod 400 + <file-name>" e movê-las para dentro da pasta "deployment".
+4. It was also necessary to change the permissions of the pem keys with the command "chmod 400 + <file-name>" and move them into the "deployment" folder.
 
-Após as alterações, foi necessário apenas rodar o comando "ansible-playbook -i inventory deploy_jenkins" e "ansible-playbook -i inventory deploy_minikube" para que
-o servidor Jenkins estivesse no ar e o minikube também.
+After the changes, it was only necessary to run the command "ansible-playbook -i inventory deploy_jenkins" and "ansible-playbook -i inventory deploy_minikube" so that
+the Jenkins server was up and running and so was minikube.
 
-Infelizmente, não consegui resolver alguns problemas de plugins do Jenkins a tempo, e o Jenkinsfile não foi executado com sucesso.
+Unfortunately, I was not able to solve some Jenkins plugin problems in time, and the Jenkinsfile was not successfully executed. Attached is a screenshot of the initial Jenkins screen, proving my access.
+
+Link to the github repository: https://github.com/lamaral-devops/PersoneticsTest
