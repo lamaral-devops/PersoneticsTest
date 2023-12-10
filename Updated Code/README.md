@@ -13,8 +13,14 @@ to deploy correctly, both Jenkins and minikube, using the provided playbooks
 
 4. It was also necessary to change the permissions of the pem keys using the command "chmod 400 file-name" and move them into the "deployment" folder.
 
-After these changes, it was only necessary to run the command "ansible-playbook -i inventory deploy_jenkins" and "ansible-playbook -i inventory deploy_minikube", and both servers were up and running.
+After these changes, it is only necessary to run the command "ansible-playbook -i inventory deploy_jenkins" and "ansible-playbook -i inventory deploy_minikube" in the "deployment" folder, and both servers will be up and running.
 
-Unfortunately, I was not able to solve some Jenkins plugin problems in time, and the Jenkinsfile was not successfully executed. Attached is a screenshot of the initial Jenkins screen, proving my access.
+In case the login screen continues to show up, you can use the following command at the end of the Dockerfile_Jenkins_Master:
+
+"USER root
+RUN sed -i 's/<useSecurity>true<\/useSecurity>/<useSecurity>false<\/useSecurity>/g' /var/jenkins_home/config.xml
+USER jenkins"
+
+Unfortunately, I was not able to solve some Jenkins plugin problems, and the Jenkinsfile was not successfully executed. Attached is a screenshot of the initial Jenkins screen, proving my access.
 
 Link to the github repository: https://github.com/lamaral-devops/PersoneticsTest
