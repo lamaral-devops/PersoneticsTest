@@ -3,11 +3,11 @@
 1. The "inventory" file had the wrong "ansible_host" parameter, so it was necessary to put the correct IP address
 so that it was possible to deploy, both Jenkins and minikube, correctly using the provided playbooks.
 
-# jenkins
-jenkins_master <ansible_host=54.229.22.238> ansible_user=ec2-user host_key_checking=False ansible_ssh_private_key_file=jkey.pem
+- jenkins
+   jenkins_master <ansible_host=54.229.22.238> ansible_user=ec2-user host_key_checking=False ansible_ssh_private_key_file=jkey.pem
 
-# minikube
-minideploy <ansible_host=176.34.79.63> ansible_user=ec2-user host_key_checking=False ansible_ssh_private_key_file=skey.pem
+- minikube
+   minideploy <ansible_host=176.34.79.63> ansible_user=ec2-user host_key_checking=False ansible_ssh_private_key_file=skey.pem
 
 2. The Dockerfile_Jenkins_Master underwent the following changes:
    - The RUN commands were grouped into a single instruction to reduce the number of layers in the Docker image and improve the efficiency of the build.
