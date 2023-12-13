@@ -13,6 +13,14 @@
   tags:
     - copy_image
 
+- name: Change image file permissions to 0744
+  file:
+    path: "{{ project_path }}/{{ image }}.tar"
+    mode: '0744'
+  tags:
+    - copy_image
+  ignore_errors: yes
+
 - name: Check if image file exists
   stat:
     path: "{{ project_path }}/{{ image }}.tar"
