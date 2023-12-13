@@ -103,6 +103,7 @@ pipeline {
                         extras: "-e image=${env.IMAGE} " +
                                 "-e project_name=${env.PROJ} " +
                                 "-e project_path=${env.PROJ_PATH} " +
+                                "-e abs_img_path=${env.ABS_IMAGE_PATH} " +
                                 "-e helm_package=${env.HELM_PACKAGE} " +
                                 "-e replica_count=2 " +
                                 "-e service_port=8080 " +
