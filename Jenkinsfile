@@ -93,7 +93,6 @@ pipeline {
                     echo "copy package"
                     sh "cp ../${env.HELM_PACKAGE} ."
                     sh 'ls -la'
-                    sh 'chmod 400 skey.pem'
                 }
                 ansiblePlaybook(
                         playbook: 'deployment/deploy_app_to_minikube.yml',
