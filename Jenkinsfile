@@ -92,6 +92,7 @@ pipeline {
                 dir("deployment") {
                     echo "copy package"
                     sh "cp ../${env.HELM_PACKAGE} ."
+                    sh "chmod 0744 ../${env.IMAGE}.tar"
                     sh 'ls -la'
                 }
                 ansiblePlaybook(
