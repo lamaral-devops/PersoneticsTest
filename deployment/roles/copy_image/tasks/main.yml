@@ -1,7 +1,7 @@
 ---
 - name: Create a directory if it does not exist
   file:
-    path: "deployment/{{ project_path }}"
+    path: "{{ project_path }}"
     state: directory
     mode: '0755'
   tags:
@@ -9,7 +9,7 @@
 
 - name: Copy image to remote
   copy:
-    src: "deployment/{{ project_path }}/{{ image }}.tar"
+    src: "{{ project_path }}/{{ image }}.tar"
     dest: "{{ project_path }}/{{ image }}.tar"
     mode: '0744'
     remote_src: true
