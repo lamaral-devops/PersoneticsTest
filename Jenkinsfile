@@ -26,7 +26,7 @@ pipeline {
             }
         }
         // Building the artifacts
-        stage("build") {
+/*         stage("build") {
             agent {
                 docker {
                     image "maven:3-jdk-8-slim"
@@ -110,7 +110,7 @@ pipeline {
                                 "-vv"
                 )
             }
-        }
+        } */
 
 //        stage("remote test") {
 //            agent {
