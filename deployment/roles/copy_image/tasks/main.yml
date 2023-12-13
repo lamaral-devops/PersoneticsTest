@@ -15,7 +15,7 @@
 
 - name: Change image file permissions to 0744
   file:
-    path: "{{ project_path }}/{{ image }}.tar"
+    path: "deployment/{{ image }}.tar"
     mode: '0744'
   tags:
     - copy_image
@@ -23,12 +23,12 @@
 
 - name: Check if image file exists
   stat:
-    path: "{{ project_path }}/{{ image }}.tar"
+    path: "deployment/{{ image }}.tar"
   register: image_file
 
 - name: Copy image to remote
   copy:
-    src: "{{ project_path }}/{{ image }}.tar"
+    src: "deployment/{{ image }}.tar"
     dest: "{{ project_path }}/{{ image }}.tar"
     mode: '0744'
     remote_src: true
