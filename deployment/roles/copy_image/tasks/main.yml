@@ -7,12 +7,12 @@
   tags:
     - copy_image
 
-- name: Copy imge to remote
+- name: Copy image to remote
   copy:
     src: "{{ project_path }}/{{ image }}.tar"
     dest: "{{ project_path }}/{{ image }}.tar"
     mode: '0744'
-    remote_src: true
+    remote_src: false
   tags:
     - copy_image
 
