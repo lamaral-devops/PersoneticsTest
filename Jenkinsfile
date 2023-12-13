@@ -26,7 +26,7 @@ pipeline {
             }
         }
         // Building the artifacts
-/*         stage("build") {
+        stage("build") {
             agent {
                 docker {
                     image "maven:3-jdk-8-slim"
@@ -110,7 +110,7 @@ pipeline {
                                 "-vv"
                 )
             }
-        } */
+        }
 
 //        stage("remote test") {
 //            agent {
@@ -154,7 +154,7 @@ pipeline {
 //        }
 
     }
- /*    post {
+    post {
         always {
 //            script {
 //                def status = "${env.BUILD_TAG} - ${currentBuild.currentResult}"
@@ -167,5 +167,5 @@ pipeline {
             sh "rm deployment/${env.IMAGE}.tar"
             sh "rm deployment/${env.HELM_PACKAGE}"
         }
-    } */
+    }
 }
