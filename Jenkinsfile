@@ -154,7 +154,7 @@ pipeline {
 //        }
 
     }
-    post {
+ /*    post {
         always {
 //            script {
 //                def status = "${env.BUILD_TAG} - ${currentBuild.currentResult}"
@@ -167,5 +167,5 @@ pipeline {
             sh "rm deployment/${env.IMAGE}.tar"
             sh "rm deployment/${env.HELM_PACKAGE}"
         }
-    }
+    } */
 }
