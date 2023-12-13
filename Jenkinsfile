@@ -164,8 +164,8 @@ pipeline {
 //"""
 //                mail body: body, subject: status, to: 'katsok@personetics.com'
 //            }
-            sh "rm deployment/${env.IMAGE}.tar"
+/*             sh "rm deployment/${env.IMAGE}.tar"
             sh "rm deployment/${env.HELM_PACKAGE}"
-        }
+        } */
     }
 }
