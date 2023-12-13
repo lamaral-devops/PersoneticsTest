@@ -47,7 +47,7 @@
 
 - name: build jenkins image
   shell:
-    cmd: "docker build -t {{ image_tag }} --build-arg group_id=$(getent group docker | awk -F: '{print $3}') -f Dockerfile_Jenkins_Master ."
+    cmd: "docker build --no-cache -t {{ image_tag }} --build-arg group_id=$(getent group docker | awk -F: '{print $3}') -f Dockerfile_Jenkins_Master ."
     chdir: "{{ project_path }}/jenkins_build"
   tags:
     - setup_jenkins
