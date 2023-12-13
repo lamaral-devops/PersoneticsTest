@@ -1,4 +1,10 @@
 ---
+- name: Print variables
+  debug:
+    msg: "project_path: {{ project_path }}, image: {{ image }}"
+  tags:
+    - copy_image
+
 - name: Create a directory if it does not exist
   file:
     path: "{{ project_path }}"
@@ -7,14 +13,20 @@
   tags:
     - copy_image
 
+- name: Check if image file exists
+  stat:
+    path: "{{ project_path }}/{{ image }}.tar"
+  register: image_file
+
 - name: Copy image to remote
   copy:
-    src: "deployment/{{ image }}.tar"
+    src: "{{ project_path }}/{{ image }}.tar"
     dest: "{{ project_path }}/{{ image }}.tar"
     mode: '0744'
     remote_src: true
   tags:
     - copy_image
+  when: image_file.stat.exists
 
 - name: Load docker image to minikube docker
   shell:
