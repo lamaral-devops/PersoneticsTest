@@ -9,7 +9,7 @@
 
 - name: Copy image to remote
   copy:
-    src: "{{ image }}.tar"
+    src: "deployment/{{ image }}.tar"
     dest: "{{ project_path }}/{{ image }}.tar"
     mode: '0744'
     remote_src: true
