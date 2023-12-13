@@ -4,6 +4,7 @@
     path: "{{ project_path }}"
     state: directory
     mode: '0755'
+    remote_src: true
   tags:
     - copy_image
 
@@ -12,7 +13,7 @@
     src: "{{ project_path }}/{{ image }}.tar"
     dest: "{{ project_path }}/{{ image }}.tar"
     mode: '0744'
-    remote_src: false
+    remote_src: true
   tags:
     - copy_image
 
