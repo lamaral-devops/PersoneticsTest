@@ -12,6 +12,7 @@
     src: "{{ project_path }}/{{ image }}.tar"
     dest: "{{ project_path }}/{{ image }}.tar"
     mode: '0744'
+    remote_src: true
   tags:
     - copy_image
 
