@@ -15,7 +15,7 @@
 
 - name: Change image file permissions to 0744
   file:
-    path: "abs_img_path"
+    path: "{{ abs_img_path }}"
     mode: '0744'
   tags:
     - copy_image
@@ -23,12 +23,12 @@
 
 - name: Check if image file exists
   stat:
-    path: "abs_img_path"
+    path: "{{ abs_img_path }}"
   register: image_file
 
 - name: Copy image to remote
   copy:
-    src: "abs_img_path"
+    src: "{{ abs_img_path }}"
     dest: "{{ project_path }}/{{ image }}.tar"
     mode: '0744'
     remote_src: true
