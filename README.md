@@ -21,6 +21,28 @@ In case the login screen continues to show up, you can use the following command
 RUN sed -i 's/<useSecurity>true<\/useSecurity>/<useSecurity>false<\/useSecurity>/g' /var/jenkins_home/config.xml
 USER jenkins"
 
-Unfortunately, I was not able to solve some Jenkins plugin problems, and the Jenkinsfile was not successfully executed. Attached is a screenshot of the initial Jenkins screen, proving my access.
+5. It was necessary to add a "--no-cache -t" flag in the docker build command to setup jenkins, this change was made in the main.yml file in setup_jenkins/tasks/main.yml.
+
+6. I changed the plugins list to retrieve the latest version of them, and added 6 different ones, like pipeline-utility-steps:latest for example.
+
+7. I also changed the folder structure in the repo so Jenkins could see the Jenkinsfile better.
+
+8. I had to change 'ansible_ssh_private_key_file' parameter to 'deployment/skey.pem' in the ansible inventory file.
+
+9. I changed 'src' parameter content "{{ project_path }}/{{ image }}.tar" to just "{{ image }}.tar" in the 'copy image to remote' step in the main.yml file of copy_image tasks.
+
+After these changes I was able to:
+
+- Deploy a new Jenkins master using deployment playbook: Jenkins is up and running in its latest version.
+- Deploy the minikube development environment via playbook: Minikube is up and running.
+- Connect the Jenkins to a git VCS: I was able to connect Jenkins to my personal GitHub profile.
+- Use webhook for each commit push (no polling): Jenkins is able to play the Jenskinsfile after any commit to the master branch
+- Use jenkins credentials when needed: admin credentials are working just fine.
+- Create a multi-branch pipeline using the provided Jenkinsfile and run it successfully
+- Run the `deploy_app_to_minikube.yml` playbook development to deploy the `greet` chart with helm to minikube development env: I had an error in the last step of the pipeline, wich is responsible for the last verification on the app, but I was able to run the playbook, deploy the helm charts and create a successfull cluster and healthy pods.
+
+![Alt text](image.png)
+
+![Alt text](image-1.png)
 
 Link to the github repository: https://github.com/lamaral-devops/PersoneticsTest
