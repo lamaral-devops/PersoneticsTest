@@ -66,5 +66,12 @@
 - name: validate app is up
   uri:
     url: "{{ service_url.stdout }}/greeting?name={{ greeted }}"
+    method: GET
+    status_code: 200
+    return_content: yes
+  register: response
   tags:
     - deploy_app
+
+- debug: 
+    var: response.content
