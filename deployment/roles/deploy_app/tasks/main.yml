@@ -59,12 +59,11 @@
 
 - name: wait for open port
   wait_for:
-    #host: "{{ minikube_ip.stdout }}"
-    #port: "{{ service_port }}"
+    host: "{{ minikube_ip.stdout }}"
+    port: "{{ service_node_port.stdout }}"
     timeout: 30
   tags:
     - deploy_app
-
 
 - name: validate app is up
   uri:
