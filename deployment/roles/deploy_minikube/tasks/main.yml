@@ -62,6 +62,6 @@
     - deploy_minikube
 
 - name: start minikube
-  command: "minikube start"
+  command: "minikube start --driver=docker"
   tags:
     - deploy_minikube
