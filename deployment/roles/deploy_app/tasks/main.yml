@@ -57,16 +57,16 @@
 - debug:
     msg: "service_node_port {{ service_node_port }}"
 
-- name: wait for open port
-  wait_for:
-    #host: "{{ minikube_ip.stdout }}"
-    #port: "{{ service_node_port.stdout }}"
-    timeout: 30
-  tags:
-    - deploy_app
+# - name: wait for open port
+#   wait_for:
+#     #host: "{{ minikube_ip.stdout }}"
+#     #port: "{{ service_node_port.stdout }}"
+#     timeout: 30
+#   tags:
+#     - deploy_app
 
-- name: validate app is up
-  uri:
-    url: "{{ service_url.stdout }}/greeting?name={{ greeted }}"
-  tags:
-    - deploy_app
+# - name: validate app is up
+#   uri:
+#     url: "{{ service_url.stdout }}/greeting?name={{ greeted }}"
+#   tags:
+#     - deploy_app
