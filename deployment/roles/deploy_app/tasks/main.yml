@@ -59,7 +59,7 @@
 
 - name: wait for open port
   wait_for:
-    host: "{{ minikube_ip }}"
+    host: "{{ minikube_ip.stdout }}"
     port: "{{ service_port }}"
     timeout: 30
   tags:
