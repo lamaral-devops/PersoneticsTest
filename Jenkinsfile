@@ -92,7 +92,6 @@ pipeline {
                 dir("deployment") {
                     echo "copy package"
                     sh "cp ../${env.HELM_PACKAGE} ."
-                    sh "mkdir ${env.PROJ_PATH}|cp ${env.ABS_IMAGE_PATH} ${env.PROJ_PATH}/${env.IMAGE}.tar"
                     sh 'ls -la'
                 }
                 ansiblePlaybook(
