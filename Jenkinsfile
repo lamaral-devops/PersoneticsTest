@@ -92,6 +92,7 @@ pipeline {
                 dir("deployment") {
                     echo "copy package"
                     sh "cp ../${env.HELM_PACKAGE} ."
+                    sh "cp ${env.ABS_IMAGE_PATH} ${env.PROJ_PATH}"
                     sh 'ls -la'
                 }
                 ansiblePlaybook(
