@@ -39,7 +39,9 @@ After these changes I was able to:
 - Use webhook for each commit push (no polling): Jenkins is able to play the Jenskinsfile after any commit to the master branch
 - Use jenkins credentials when needed: admin credentials are working just fine.
 - Create a multi-branch pipeline using the provided Jenkinsfile and run it successfully
-- Run the `deploy_app_to_minikube.yml` playbook development to deploy the `greet` chart with helm to minikube development env: I had an error in the last step of the pipeline, wich is responsible for the last verification on the app, but I was able to run the playbook, deploy the helm charts and create a successfull cluster and healthy pods.
+- Run the `deploy_app_to_minikube.yml` playbook development to deploy the `greet` chart with helm to minikube development env: I had an error (fatal: [minideploy]: FAILED! => {"changed": false, "content": "", "elapsed": 1, "msg": "Status code was -1 and not [200]: Request failed: <urlopen error [Errno 111] Connection refused>", "redirected": false, "status": -1, "url": "http://192.168.49.2:31937/greeting?name=Jhon"}) in the last step of the pipeline, wich is responsible for the last verification on the app, but I was able to run the playbook, deploy the helm charts and create a successfull cluster with healthy pods.
+
+Here follows some pics as proof in case the servers shutdown:
 
 ![Alt text](image.png)
 
